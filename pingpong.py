@@ -21,7 +21,7 @@ FPS = 60
 
 
 
-ball_speed = 1.05
+ball_speed = -1.05
 
 class GameSprite(sprite.Sprite):
     def __init__ (self,player_image,player_x,player_y,size_x,size_y,player_speed):
@@ -75,9 +75,15 @@ while game == True:
 
     if finish != True:
         window.fill(back)
-    player1.update()
-    player2.update()
-    ping_pong.update()
+        player1.update()
+        player2.update()
+        ping_pong.update()
+
+        ping_pong.rect.x += speed_x
+        ping_pong.rect.x += speed_y
+
+        if sprite.collide_rect(player1,ping_pong) or sprite.collide_rect(player2,ping_pong):
+            speed_x *= ball_speed
 
 
 
